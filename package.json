@@ -1,0 +1,30 @@
+{
+  "name": "reaction",
+  "version": "1.0.0",
+  "description": "React playground and experimental Web Performance API framework for SPAs",
+  "main": "reaction.js",
+  "scripts": {
+    "test": "gulp precommit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jrobison153/reaction.git"
+  },
+  "keywords": [
+    "sandbox",
+    "react",
+    "performance"
+  ],
+  "author": "Justin Robison",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jrobison153/reaction/issues"
+  },
+  "homepage": "https://github.com/jrobison153/reaction",
+  "dependencies": {
+    "react": "^0.13.2"
+  },
+  "devDependencies": {
+    "browserify": "^9.0.8"
+  }
+}
