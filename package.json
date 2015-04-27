@@ -25,6 +25,13 @@
     "react": "^0.13.2"
   },
   "devDependencies": {
-    "browserify": "^9.0.8"
+    "babel": "^5.1.13",
+    "babelify": "^6.0.2",
+    "browserify": "^9.0.8",
+    "glob": "^5.0.5",
+    "gulp": "^3.8.11",
+    "jshint": "^2.7.0",
+    "map-stream": "0.0.5",
+    "through2": "^0.6.5"
   }
 }
