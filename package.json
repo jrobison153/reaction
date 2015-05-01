@@ -30,7 +30,9 @@
     "browserify": "^9.0.8",
     "glob": "^5.0.5",
     "gulp": "^3.8.11",
+    "gulp-jshint": "^1.10.0",
     "jshint": "^2.7.0",
+    "jshint-stylish": "^1.0.1",
     "map-stream": "0.0.5",
     "through2": "^0.6.5"
   }

@@ -3,13 +3,18 @@
  */
 
 var gulp = require("gulp");
-var babel = require("babel");
 var browserify = require("browserify");
 var fs = require("fs");
 var babelify = require("babelify");
+var jshint = require("gulp-jshint");
+var stylish = require("jshint-stylish");
 
 
 gulp.task("build", function () {
+
+    gulp.src(['./app/**/*.js', './app/**/*.jsx'])
+        .pipe(jshint())
+        .pipe(jshint.reporter(stylish));
 
     browserify({ debug: true })
         .transform(babelify)
