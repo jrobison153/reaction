@@ -8,30 +8,46 @@ var fs = require("fs");
 var babelify = require("babelify");
 var jshint = require("gulp-jshint");
 var stylish = require("jshint-stylish");
-
+var chalk = require("chalk");
+var jsxHint = require("jshint-jsx").JSXHINT;
+var runSequence = require("run-sequence");
 
 gulp.task("build", function () {
+    runSequence("lint", "browserify", "index");
+});
 
-    gulp.src(['./app/**/*.js', './app/**/*.jsx'])
-        .pipe(jshint())
-        .pipe(jshint.reporter(stylish));
+gulp.task("index", function () {
+    return gulp.src("./app/index.html").pipe(gulp.dest("./dist"));
+});
 
-    browserify({ debug: true })
+gulp.task("browserify", function () {
+    return browserify({debug: true})
         .transform(babelify)
-        .require("./app/Application.jsx", { entry: true })
+        .require("./app/scripts/view/Application.jsx", {entry: true})
         .bundle()
-        .on("error", function (err) { console.log("Error: " + err.message); })
+        .on("error", function (err) {
+            console.log("Error: " + err.message);
+        })
         .pipe(fs.createWriteStream('./dist/reaction.js'));
+})
 
-    gulp.src("./app/index.html").pipe(gulp.dest("./dist"));
+gulp.task("lint", function () {
+    return gulp.src(['./app/**/*.js', './app/**/*.jsx'])
+        .pipe(jshint({
+            linter: jsxHint
+        }))
+        .
+        pipe(jshint.reporter(stylish)).on("error", function (err) {
+            console.log(err.toString());
+        });
 });
 
 gulp.task("watch", function () {
 
     var watcher;
-    watcher = gulp.watch(["./app/**/*.jsx", "./app/index.html"], ["build"]);
+    watcher = gulp.watch(["./app/**/*.jsx", ".app/**/*.js]", "./app/index.html"], ["build"]);
 
-    watcher.on("change", function () {
-        console.log("JSX Change detected, build kicked off");
+    watcher.on("change", function (event) {
+        console.log(chalk.green.bold("File " + event.path + " changed, build kicked off"));
     });
 });

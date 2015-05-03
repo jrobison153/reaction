@@ -28,12 +28,15 @@
     "babel": "^5.1.13",
     "babelify": "^6.0.2",
     "browserify": "^9.0.8",
+    "chalk": "^1.0.0",
     "glob": "^5.0.5",
     "gulp": "^3.8.11",
     "gulp-jshint": "^1.10.0",
     "jshint": "^2.7.0",
+    "jshint-jsx": "^0.4.1",
     "jshint-stylish": "^1.0.1",
     "map-stream": "0.0.5",
+    "run-sequence": "^1.1.0",
     "through2": "^0.6.5"
   }
 }

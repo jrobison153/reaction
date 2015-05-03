@@ -1,0 +1,18 @@
+{
+  "globalstrict": true,
+  "predef": [
+    "document",
+    "require",
+    "module",
+    "describe",
+    "browser",
+    "it",
+    "expect",
+    "beforeEach",
+    "element",
+    "by",
+    "exports"
+  ],
+  "globals": {
+  }
+}
