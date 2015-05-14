@@ -1,0 +1,47 @@
+* {
+    border-style: solid;
+    border-width: 1px;
+}
+
+body {
+    max-width: 1200px;
+    min-width: 1200px;
+    margin-top: 5vh;
+}
+
+.application {
+    max-height: 60vh;
+    min-height: 60vh;
+}
+
+.header {
+
+}
+
+.leftrail {
+    float: left;
+    width: 15%;
+    height: 100%;
+}
+
+.mainform {
+    float: left;
+    width: 55%;
+    position: relative;
+    max-height: 60vh;
+    min-height: 60vh;
+}
+
+.rightrail {
+    float: left;
+    position: relative;
+    max-height: 60vh;
+    min-height: 60vh;
+}
+
+.centered {
+    position: fixed;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%);
+}

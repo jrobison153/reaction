@@ -11,13 +11,19 @@ var stylish = require("jshint-stylish");
 var chalk = require("chalk");
 var jsxHint = require("jshint-jsx").JSXHINT;
 var runSequence = require("run-sequence");
+var server = require('./server/src/server');
 
 gulp.task("build", function () {
-    runSequence("lint", "browserify", "index");
+    runSequence("lint", "browserify", ["index", "css"]);
 });
 
 gulp.task("index", function () {
     return gulp.src("./app/index.html").pipe(gulp.dest("./dist"));
+});
+
+gulp.task("css", function () {
+
+    return gulp.src("./app/styles/reaction.css").pipe(gulp.dest("./dist"));
 });
 
 gulp.task("browserify", function () {
@@ -29,7 +35,7 @@ gulp.task("browserify", function () {
             console.log("Error: " + err.message);
         })
         .pipe(fs.createWriteStream('./dist/reaction.js'));
-})
+});
 
 gulp.task("lint", function () {
     return gulp.src(['./app/**/*.js', './app/**/*.jsx'])
@@ -44,10 +50,19 @@ gulp.task("lint", function () {
 
 gulp.task("watch", function () {
 
-    var watcher;
-    watcher = gulp.watch(["./app/**/*.jsx", ".app/**/*.js]", "./app/index.html"], ["build"]);
+    gulp.watch("./app/styles/*.css", ["css"]).on("change", function () {
+        console.log(chalk.green.bold("CSS changed, build kicked off"));
+    });
 
-    watcher.on("change", function (event) {
+    gulp.watch("./app/index.html", ["index"]).on("change", function () {
+        console.log(chalk.green.bold("index.html changed, build kicked off"));
+    });
+
+    gulp.watch(["./app/**/*.jsx", ".app/**/*.js"], ["build"]).on("change", function (event) {
         console.log(chalk.green.bold("File " + event.path + " changed, build kicked off"));
     });
+});
+
+gulp.task('startServer', function () {
+    return server.start();
 });

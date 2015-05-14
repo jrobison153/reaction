@@ -14,7 +14,7 @@ var MainForm = require("./MainForm.jsx");
 var App = React.createClass({
 
     render: function () {
-        return <div><Header/><LeftRail/><MainForm/><RightRail/><Footer/></div>;
+        return <div className="application"><Header/><LeftRail/><MainForm/><RightRail/><Footer/></div>;
     }
 });
 
